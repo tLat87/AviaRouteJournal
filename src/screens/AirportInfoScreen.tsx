@@ -8,35 +8,49 @@ import {
     SafeAreaView,
     ImageBackground,
     Platform,
+    ImageSourcePropType,
 } from 'react-native';
-// Removed: import Icon from 'react-native-vector-icons/MaterialIcons'; // No more MaterialIcons
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-const AirportInfoScreen = ({ navigation, route }) => {
-    // Default airport data for demonstration if no params are passed
-    const { airport } = route?.params || {
-        airport: {
-            id: '1',
-            city: 'Lisbon',
-            airportCode: 'LIS',
-            country: 'Portugal',
-            coordinates: "38°34'06.1\"N 9°07'22.0\"W",
-            backgroundImg: require('../assets/img/air/914a37ccc482b638f88aee55667cc8994d2daf1c.png'),
-            notes: 'Beautiful airport with easy access to the city center. Modern facilities and good signage. Can get busy during peak hours, but overall a pleasant experience. Enjoyed the modern architecture and efficient check-in process. Plenty of shops and dining options available.',
-            flightStatus: 'Departed', // Static status for demonstration
-        },
+type RootStackParamList = {
+    AirportInfo: { airport: Airport } | undefined;
+};
+
+type Props = NativeStackScreenProps<RootStackParamList, 'AirportInfo'>;
+
+type Airport = {
+    id: string;
+    city: string;
+    airportCode: string;
+    country: string;
+    coordinates: string;
+    backgroundImg: ImageSourcePropType;
+    notes?: string;
+    flightStatus?: 'Departed' | 'Arrived' | 'In transit' | null;
+};
+
+const AirportInfoScreen: React.FC<Props> = ({ navigation, route }) => {
+    const airport: Airport = route?.params?.airport || {
+        id: '1',
+        city: 'Lisbon',
+        airportCode: 'LIS',
+        country: 'Portugal',
+        coordinates: "38°34'06.1\"N 9°07'22.0\"W",
+        backgroundImg: require('../assets/img/air/914a37ccc482b638f88aee55667cc8994d2daf1c.png'),
+        notes: 'Beautiful airport with easy access to the city center. Modern facilities and good signage. Can get busy during peak hours, but overall a pleasant experience. Enjoyed the modern architecture and efficient check-in process. Plenty of shops and dining options available.',
+        flightStatus: 'Departed',
     };
 
-    const notes = airport.notes || 'No detailed notes available for this airport at this time. It is a standard airport experience.';
-    const flightStatus = airport.flightStatus || null; // Can be 'Departed', 'Arrived', 'In transit', or null
+    const notes: string = airport.notes || 'No detailed notes available for this airport at this time.';
+    const flightStatus: string | null = airport.flightStatus || null;
 
-    const handleGoBack = () => {
+    const handleGoBack = (): void => {
         navigation.goBack();
     };
 
     return (
         <SafeAreaView style={styles.safeArea}>
             <ScrollView contentContainerStyle={styles.scrollContent}>
-                {/* Top section with background image and header */}
                 <ImageBackground
                     source={airport.backgroundImg}
                     style={styles.backgroundImage}
@@ -56,34 +70,26 @@ const AirportInfoScreen = ({ navigation, route }) => {
                     </View>
                 </ImageBackground>
 
-                {/* Airport information panel */}
                 <View style={styles.infoPanel}>
-                    {/* Airport Details Card */}
                     <View style={styles.card}>
                         <Text style={styles.cardTitle}>Airport Details</Text>
                         <View style={styles.detailRow}>
-                            {/* Replaced MaterialIcons with text character/emoji or just styling */}
                             <Text style={styles.detailIcon}>🏙️</Text>
                             <Text style={styles.detailText}>{airport.city}, {airport.country}</Text>
                         </View>
                         <View style={styles.detailRow}>
-                            {/* Replaced MaterialIcons with text character/emoji or just styling */}
                             <Text style={styles.detailIcon}>📍</Text>
                             <Text style={styles.detailText}>{airport.coordinates}</Text>
                         </View>
                     </View>
 
-                    {/* Notes Section */}
                     <View style={styles.card}>
                         <Text style={styles.cardTitle}>Notes</Text>
                         <View style={styles.notesContainer}>
-                            <Text style={styles.notesText}>
-                                {notes}
-                            </Text>
+                            <Text style={styles.notesText}>{notes}</Text>
                         </View>
                     </View>
 
-                    {/* Flight Status Section */}
                     <View style={styles.card}>
                         <Text style={styles.cardTitle}>Current Status</Text>
                         <View style={styles.statusButtonsContainer}>

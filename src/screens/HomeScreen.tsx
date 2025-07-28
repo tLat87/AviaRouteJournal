@@ -498,16 +498,16 @@ const FlightLog = ({ navigation }) => {
                         ))}
                     </ScrollView>
 
-                    {/* Add Button */}
                     <TouchableOpacity
                         style={styles.addButton}
                         onPress={() => navigation.navigate('NewFlightScreen')}
                     >
                         <Text style={styles.addButtonText}>+ Add Flight</Text>
                     </TouchableOpacity>
+                    <View style={{marginBottom: 50}}/>
                 </View>
             </ImageBackground>
-            <View style={{marginBottom: 50}}/>
+            {/*<View style={{marginBottom: 50}}/>*/}
         </SafeAreaView>
     );
 };

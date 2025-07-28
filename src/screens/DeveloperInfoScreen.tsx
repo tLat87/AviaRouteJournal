@@ -7,18 +7,27 @@ import {
     ImageBackground,
     SafeAreaView,
     Platform,
-    Linking, // For opening URLs
-    ScrollView, // To ensure content is scrollable if it grows
+    Linking,
+    ScrollView,
 } from 'react-native';
-// Removed: import Icon from 'react-native-vector-icons/MaterialIcons'; // No more MaterialIcons
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-const DeveloperInfoScreen = ({ navigation }) => {
+type RootStackParamList = {
+    DeveloperInfo: undefined;
+    // Add other screens here if needed
+};
+
+type Props = NativeStackScreenProps<RootStackParamList, 'DeveloperInfo'>;
+
+const DeveloperInfoScreen: React.FC<Props> = ({ navigation }) => {
     const handleGoBack = () => {
         navigation.goBack();
     };
 
-    const openLink = (url) => {
-        Linking.openURL(url).catch(err => console.error("Couldn't load page", err));
+    const openLink = (url: string) => {
+        Linking.openURL(url).catch(err =>
+            console.error("Couldn't load page", err)
+        );
     };
 
     return (
@@ -30,7 +39,6 @@ const DeveloperInfoScreen = ({ navigation }) => {
             >
                 <View style={styles.headerContainer}>
                     <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
-                        {/* Replaced Icon with text arrow */}
                         <Text style={styles.backButtonText}>←</Text>
                     </TouchableOpacity>
                     <Text style={styles.headerTitle}>Developer Info</Text>
@@ -39,7 +47,7 @@ const DeveloperInfoScreen = ({ navigation }) => {
 
                 <ScrollView style={styles.contentScrollView}>
                     <View style={styles.contentContainer}>
-                        {/* App Information Card */}
+                        {/* App Info */}
                         <View style={styles.infoCard}>
                             <Text style={styles.cardTitle}>App Information</Text>
                             <View style={styles.infoRow}>
@@ -60,27 +68,20 @@ const DeveloperInfoScreen = ({ navigation }) => {
                             </View>
                         </View>
 
-                        {/* Developer Contact Card */}
+                        {/* Contact */}
                         <View style={styles.infoCard}>
                             <Text style={styles.cardTitle}>Contact Developer</Text>
-                            <TouchableOpacity style={styles.linkItem} onPress={() => openLink('mailto:developer@example.com')}>
-                                {/* Replaced Icon with emoji */}
+                            <TouchableOpacity
+                                style={styles.linkItem}
+                                onPress={() => openLink('mailto:hugovety@gmail.com')}
+                            >
                                 <Text style={styles.linkIcon}>📧</Text>
                                 <Text style={styles.linkText}>hugovety@gmail.com</Text>
-                                {/* Replaced Icon with emoji */}
                                 <Text style={styles.linkArrowIcon}>↗️</Text>
                             </TouchableOpacity>
-                            {/*<TouchableOpacity style={styles.linkItem} onPress={() => openLink('https://github.com/your-github-profile')}>*/}
-                            {/*    /!* Replaced Icon with emoji *!/*/}
-                            {/*    <Text style={styles.linkIcon}>🐙</Text>*/}
-                            {/*    <Text style={styles.linkText}>GitHub Profile</Text>*/}
-                            {/*    /!* Replaced Icon with emoji *!/*/}
-                            {/*    <Text style={styles.linkArrowIcon}>↗️</Text>*/}
-                            {/*</TouchableOpacity>*/}
-
                         </View>
 
-                        {/* Credits Card */}
+                        {/* Credits */}
                         <View style={styles.infoCard}>
                             <Text style={styles.cardTitle}>Credits</Text>
                             <Text style={styles.creditsText}>
@@ -100,11 +101,10 @@ const DeveloperInfoScreen = ({ navigation }) => {
     );
 };
 
-
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
-        backgroundColor: '#1a1a2e', // Dark purple-blue background
+        backgroundColor: '#1a1a2e',
     },
     backgroundImage: {
         flex: 1,
@@ -118,22 +118,22 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingTop: Platform.OS === 'android' ? 40 : 0,
         justifyContent: 'space-between',
-        backgroundColor: 'rgba(26, 26, 46, 0.45)', // Darker transparent overlay for header
+        backgroundColor: 'rgba(26, 26, 46, 0.45)',
     },
     backButton: {
         padding: 5,
         width: 40,
         alignItems: 'flex-start',
     },
-    backButtonText: { // New style for text arrow
-        color: '#ffe0f0', // Soft pinkish-white
+    backButtonText: {
+        color: '#ffe0f0',
         fontSize: 28,
         fontWeight: '300',
     },
     headerTitle: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: '#ffe0f0', // Soft pinkish-white
+        color: '#ffe0f0',
         fontStyle: 'italic',
         textShadowColor: 'rgba(0, 0, 0, 0.5)',
         textShadowOffset: { width: 1, height: 1 },
@@ -148,17 +148,17 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         flexGrow: 1,
-        backgroundColor: 'rgba(26, 26, 46, 0.2)', // Lighter overlay for content area
+        backgroundColor: 'rgba(26, 26, 46, 0.2)',
         paddingHorizontal: 20,
         paddingVertical: 30,
     },
     infoCard: {
-        backgroundColor: 'rgba(255, 192, 203, 0.15)', // Light pink with high transparency
+        backgroundColor: 'rgba(255, 192, 203, 0.15)',
         borderRadius: 20,
         padding: 20,
         marginBottom: 20,
         borderWidth: 1,
-        borderColor: 'rgba(255, 105, 180, 0.3)', // Subtle pink border
+        borderColor: 'rgba(255, 105, 180, 0.3)',
         ...Platform.select({
             ios: {
                 shadowColor: '#ff69b4',
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     cardTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#ffe0f0', // Soft pinkish-white for card titles
+        color: '#ffe0f0',
         marginBottom: 15,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderColor: 'rgba(255, 255, 255, 0.2)',
@@ -193,11 +193,11 @@ const styles = StyleSheet.create({
     infoLabel: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#f0e6fa', // Light lavender for labels
+        color: '#f0e6fa',
     },
     infoValue: {
         fontSize: 16,
-        color: '#fff', // White for values
+        color: '#fff',
     },
     linkItem: {
         flexDirection: 'row',
@@ -206,26 +206,25 @@ const styles = StyleSheet.create({
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderColor: 'rgba(255, 255, 255, 0.2)',
     },
-    linkIcon: { // Style for emoji icons
+    linkIcon: {
         fontSize: 20,
         marginRight: 10,
-        // Emojis often don't take tintColor, so we adjust font size and rely on default color
     },
     linkText: {
         flex: 1,
         fontSize: 16,
-        color: '#fff', // White text for links
+        color: '#fff',
         marginLeft: 10,
-        textDecorationLine: 'underline', // Underline links
+        textDecorationLine: 'underline',
     },
-    linkArrowIcon: { // Style for the arrow emoji
+    linkArrowIcon: {
         fontSize: 18,
-        color: '#ffc0cb', // Soft pink for the arrow
+        color: '#ffc0cb',
         marginLeft: 5,
     },
     creditsText: {
         fontSize: 15,
-        color: '#fff', // White text for credits
+        color: '#fff',
         marginBottom: 8,
         textAlign: 'center',
         lineHeight: 22,
