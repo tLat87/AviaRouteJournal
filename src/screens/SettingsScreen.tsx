@@ -83,46 +83,46 @@ const SettingsScreen = ({ navigation }) => {
                     </TouchableOpacity>
 
                     {/* Technology Stack and Tips Section */}
-                    <View style={styles.infoBlock}>
-                        <Text style={styles.infoBlockTitle}>Technology Stack</Text>
-                        <Text style={styles.infoBlockText}>
-                            This application is built using the following core technologies:
-                        </Text>
-                        <Text style={styles.infoBlockListItem}>• **React Native** (for cross-platform UI)</Text>
-                        <Text style={styles.infoBlockListItem}>• **Redux Toolkit** (for state management)</Text>
-                        <Text style={styles.infoBlockListItem}>• **React Navigation** (for screen navigation)</Text>
-                        <Text style={styles.infoBlockListItem}>• **react-native-image-picker** (for photo selection)</Text>
-                        <Text style={styles.infoBlockListItem}>• **react-native-maps** (for map functionalities)</Text>
-                        {/* Note: react-native-vector-icons and react-native-switch-toggle removed as per request */}
+                    {/*<View style={styles.infoBlock}>*/}
+                    {/*    <Text style={styles.infoBlockTitle}>Technology Stack</Text>*/}
+                    {/*    <Text style={styles.infoBlockText}>*/}
+                    {/*        This application is built using the following core technologies:*/}
+                    {/*    </Text>*/}
+                    {/*    <Text style={styles.infoBlockListItem}>• **React Native** (for cross-platform UI)</Text>*/}
+                    {/*    <Text style={styles.infoBlockListItem}>• **Redux Toolkit** (for state management)</Text>*/}
+                    {/*    <Text style={styles.infoBlockListItem}>• **React Navigation** (for screen navigation)</Text>*/}
+                    {/*    <Text style={styles.infoBlockListItem}>• **react-native-image-picker** (for photo selection)</Text>*/}
+                    {/*    <Text style={styles.infoBlockListItem}>• **react-native-maps** (for map functionalities)</Text>*/}
+                    {/*    /!* Note: react-native-vector-icons and react-native-switch-toggle removed as per request *!/*/}
 
-                        <View style={styles.infoBlockSeparator} />
+                    {/*    <View style={styles.infoBlockSeparator} />*/}
 
-                        <Text style={styles.infoBlockTitle}>Tips for Building Mobile Apps</Text>
-                        <Text style={styles.infoBlockText}>
-                            When developing mobile applications, consider these best practices:
-                        </Text>
-                        <Text style={styles.infoBlockListItem}>
-                            • **Component Reusability:** Design small, focused components that can be reused across different parts of your app.
-                        </Text>
-                        <Text style={styles.infoBlockListItem}>
-                            • **State Management:** For complex apps, use a predictable state management library like Redux to handle data flow.
-                        </Text>
-                        <Text style={styles.infoBlockListItem}>
-                            • **Performance Optimization:** Optimize images, use FlatList/SectionList for long lists, and avoid unnecessary re-renders.
-                        </Text>
-                        <Text style={styles.infoBlockListItem}>
-                            • **Cross-Platform Compatibility:** Test your app thoroughly on both iOS and Android devices to ensure consistent behavior and UI.
-                        </Text>
-                        <Text style={styles.infoBlockListItem}>
-                            • **User Experience (UX):** Focus on intuitive navigation, clear feedback, and a visually appealing interface.
-                        </Text>
-                        <Text style={styles.infoBlockListItem}>
-                            • **Error Handling:** Implement robust error handling and provide clear messages to users.
-                        </Text>
-                        <Text style={styles.infoBlockListItem}>
-                            • **Native Modules:** For platform-specific features (like maps, camera), use well-maintained native modules.
-                        </Text>
-                    </View>
+                    {/*    <Text style={styles.infoBlockTitle}>Tips for Building Mobile Apps</Text>*/}
+                    {/*    <Text style={styles.infoBlockText}>*/}
+                    {/*        When developing mobile applications, consider these best practices:*/}
+                    {/*    </Text>*/}
+                    {/*    <Text style={styles.infoBlockListItem}>*/}
+                    {/*        • **Component Reusability:** Design small, focused components that can be reused across different parts of your app.*/}
+                    {/*    </Text>*/}
+                    {/*    <Text style={styles.infoBlockListItem}>*/}
+                    {/*        • **State Management:** For complex apps, use a predictable state management library like Redux to handle data flow.*/}
+                    {/*    </Text>*/}
+                    {/*    <Text style={styles.infoBlockListItem}>*/}
+                    {/*        • **Performance Optimization:** Optimize images, use FlatList/SectionList for long lists, and avoid unnecessary re-renders.*/}
+                    {/*    </Text>*/}
+                    {/*    <Text style={styles.infoBlockListItem}>*/}
+                    {/*        • **Cross-Platform Compatibility:** Test your app thoroughly on both iOS and Android devices to ensure consistent behavior and UI.*/}
+                    {/*    </Text>*/}
+                    {/*    <Text style={styles.infoBlockListItem}>*/}
+                    {/*        • **User Experience (UX):** Focus on intuitive navigation, clear feedback, and a visually appealing interface.*/}
+                    {/*    </Text>*/}
+                    {/*    <Text style={styles.infoBlockListItem}>*/}
+                    {/*        • **Error Handling:** Implement robust error handling and provide clear messages to users.*/}
+                    {/*    </Text>*/}
+                    {/*    <Text style={styles.infoBlockListItem}>*/}
+                    {/*        • **Native Modules:** For platform-specific features (like maps, camera), use well-maintained native modules.*/}
+                    {/*    </Text>*/}
+                    {/*</View>*/}
                 </ScrollView>
             </ImageBackground>
             <View style={{marginBottom: 50}}/>
